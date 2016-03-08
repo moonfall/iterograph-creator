@@ -1,0 +1,59 @@
+<form class="form-horizontal" >
+    <uib-accordion close-others="true">
+        <uib-accordion-group heading="Shape and color" is-open="true">
+            <div class="form-group form-inline">
+                <label class="col-md-3 control-label">
+                    <locker target="graph.lock.shape"></locker>
+                    Shape
+                </label>
+                <div class="col-sm-9">
+                    <select ng-model="layer.shape.type" class="form-control">
+                        <!-- <option value="circle">circle</option>
+                        <option value="square">square</option> -->
+                        <option value="line">line</option>
+                        <option value="ellipse">ellipse</option>
+                        <option value="rectangle">rectangle</option>
+                        <option value="triangle">triangle</option>
+                    </select>
+                    <span ng-if="layer.shape.type!='line'">
+                        <label for="inputShapeRatio" class="control-label">ratio</label>
+                        <input id="inputShapeRatio" type="number" style="width:80px" ng-model="layer.shape.ratio" class="form-control" min="0" max="1" step="0.01" uib-tooltip="ratio height/width"></input>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group form-inline">
+                <label class="col-md-3 control-label">
+                    <locker target="graph.lock.colorScale"></locker>
+                    Palette
+                </label>
+                <div class="col-sm-9">
+                    <select ng-model="layer.colorScale.type" class="form-control">
+                        <option value="linear">linear</option>
+                        <option value="ordinal">ordinal</option>
+                    </select>
+                    <br/>
+                    <span id='palette-colors'>
+                        <input ng-repeat='c in layer.colorScale.range track by $index' type="color" ng-model="layer.colorScale.range[$index]" class="form-control"/>
+                        <span class='clickable' ng-click="graph.addScaleColor(layer.colorScale)">+</span>/<span class='clickable' ng-click="graph.removeScaleColor(layer.colorScale)">-</span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group form-inline" ng-repeat="e in ['fill', 'stroke']">
+                <label class="col-md-3 control-label" style="text-transform:capitalize">
+                    <locker target="graph.lock[e+'Style']"></locker>
+                    {{e}}
+                </label>
+                <div class="col-sm-9">
+                    <select ng-model="layer[e+'Style'].colorType" class="form-control">
+                        <option value="none">none</option>
+                        <option value="constant">solid</option>
+                        <option value="palette">palette</option>
+                    </select>
+                    <input ng-if="layer[e+'Style'].colorType=='constant'" type="color" ng-model="layer[e+'Style'].color" class="form-control" style="width:50px"/>
+                    <input ng-if="layer[e+'Style'].colorType!='none'" type="number" ng-model="layer[e+'Style'].opacity" class="form-control" style="width:80px" min="0" max="1" step="0.1" uib-tooltip="opacity" tooltip-placement="right"/>
+                </div>
+            </div>
+        </uib-accordion-group>
+    </uib-accordion>
+</form>

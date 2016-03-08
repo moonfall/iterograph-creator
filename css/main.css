@@ -1,0 +1,175 @@
+/*
+    Page
+*/
+
+body {
+    background : #FCFCFC;
+}
+
+#header {
+    display: block;
+    padding: 20px 20px;
+    font-weight: bold;
+    /*color: #fff;*/
+    /*text-align: center;*/
+    /*background-color: #0275d8;*/
+    /*background-color: #F5F5F5;*/
+    /*border-bottom : 2px solid #333;*/
+    border-bottom : 1px solid #EEE;
+    color: #333;
+}
+
+#board-div svg {
+    background: white;
+}
+
+#discover-button {
+  margin-top : 20px;
+}
+/*
+    Settings editor
+*/
+
+#settings-title {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.panel-heading {
+    padding : 5px 5px;
+}
+
+.panel-title {
+    /*font-weight : bold;*/
+}
+
+div[scale-input] .point:hover {
+    cursor: pointer;
+}
+
+.control-label {
+
+    padding-left: 5px;
+    padding-right: 0px;
+
+}
+
+.form-group {
+  margin-bottom : 8px;
+}
+
+.glyphicon-lock {
+    color : lightgrey;
+}
+
+.glyphicon-lock.locked {
+    color : inherit;
+}
+
+#toolbar .btn{
+  width : 50px;
+  height : 50px;
+  font-size: 25px;
+  padding: 6px
+}
+
+#toolbar .btn .glyphicon{
+  margin-top : 5px;
+}
+
+#layer-list li.active a {
+/*  background-color: #EEE;
+  border-color: #EEE;
+  color: #337ab7;*/
+}
+
+.shadowed {
+  box-shadow: 2px 2px 2px #888;
+}
+
+.clickable:hover {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#palette-colors input {
+    width:20px;
+    height:25px;
+    padding:0;
+    border:0;
+    margin-top:5px;
+}
+
+#remove-layer-button {
+  position:absolute;
+  right:10px;
+  color:#ccc;
+}
+
+#remove-layer-button:hover {
+  cursor: pointer;
+  color:#333;
+}
+
+/* Board*/
+
+#board-div svg {
+    box-shadow: 5px 5px 5px #888;
+}
+
+/* Gallery */
+
+#collection-container img {
+    box-shadow: 5px 5px 5px #888;
+    margin:10px;
+}
+
+/*
+    Scale input axes
+*/
+
+/*path.line {
+  fill: none;
+  stroke: #666;
+  stroke-width: 1.5px;
+}
+
+path.area {
+  fill: #e7e7e7;
+}
+*/
+.axis {
+  shape-rendering: crispEdges;
+}
+
+.y.axis text {
+  display : none;
+}
+
+.x.axis text {
+  font-size: 8px;
+  /*font-weight: 700;*/
+}
+
+.x.axis .minor {
+  stroke-opacity: .5;
+}
+
+.x.axis line,
+.x.axis path {
+  /*display: none;*/
+  fill: none;
+  stroke: #DDD;
+}
+
+.y.axis line,
+.y.axis path {
+  display : none;
+}
+
+.scale-info {
+  font-size: 8px;
+  fill: #888;
+
+  visibility: hidden;
+}

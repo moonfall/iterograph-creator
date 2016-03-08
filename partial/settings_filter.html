@@ -1,0 +1,88 @@
+<form class="form-horizontal" >
+
+
+
+    <uib-accordion close-others="true">
+
+        <!-- FILTER -->
+        <uib-accordion-group heading="Filter" is-open="true" ng-init="filterBaseFreq=0.2;filterOctave=3;filterScale=20">
+
+            <!-- The svg holding filter def -->
+            <svg height="0" width="0">
+                <defs id="svg-filter-defs">
+
+                     <filter id="totofilter">
+
+                        <feGaussianBlur in="SourceAlpha" result="blurOut" data-stdDeviation="{{filterdev}}"/>
+
+                        <feOffset in="blurOut" result="dropBlur" dx="5" dy="5"/>
+
+                        <feComposite data-operator="{{filtercompoop}}" in="SourceGraphic" in2="dropBlur" result="final"/>
+
+                    </filter>
+
+                    <filter id="handdrawn">
+
+                        <feTurbulence ng-attr-base_frequency="{{filterBaseFreq}}" numOctaves="{{filterOctave}}" type="fractalNoise"/>
+
+                        <feDisplacementMap scale="{{filterScale}}" xChannelSelector="R" in="SourceGraphic"/>
+
+                     </filter>
+
+                    <filter id="glow">
+                        <feColorMatrix type="matrix"
+                            values=
+                                "0 0 0 0   0
+                                 0 0 0 0.9 0 
+                                 0 0 0 0.9 0 
+                                 0 0 0 1   0"/>
+                        <feGaussianBlur stdDeviation="2.5"
+                            result="coloredBlur"/>
+                        <feMerge>
+                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
+
+                </defs>
+            </svg>
+
+            <!-- Hand Drawn -->
+            <div class="form-group form-inline">
+                <label class="col-md-3 control-label">Base freq</label>
+                <div class="col-md-9">
+                    <input type="text" ng-model="filterBaseFreq">
+                </div>
+            </div>
+            <div class="form-group form-inline">
+                <label class="col-md-3 control-label">Num octaves</label>
+                <div class="col-md-9">
+                    <input type="text" ng-model="filterOctave">
+                </div>
+            </div>
+            <div class="form-group form-inline">
+                <label class="col-md-3 control-label">scale</label>
+                <div class="col-md-9">
+                    <input type="text" ng-model="filterScale">
+                </div>
+            </div>
+            <hr>
+            <!-- DROP SHADOW -->
+            <div class="form-group form-inline">
+                <label class="col-md-3 control-label">Std dev</label>
+                <div class="col-md-9">
+                    <input type="text" ng-model="filterdev">
+                </div>
+            </div>
+            <div class="form-group form-inline">
+                <label class="col-md-3 control-label">compo op</label>
+                <div class="col-md-9">
+                    <select ng-model="filtercompoop" ng-options="v for v in ['over', 'in', 'out', 'xor']">
+                    </select>
+                </div>
+            </div>
+        </uib-accordion-group>
+    </uib-accordion>
+
+
+</form>

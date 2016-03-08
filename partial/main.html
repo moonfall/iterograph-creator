@@ -1,0 +1,54 @@
+<div>
+    <img src="img/logo2.png" style="position:absolute;width:300px;padding-left:10px;padding-top:10px">
+    <div id="header">
+        <!-- <span style="margin-left:300px">Iterograph</span> -->
+    </div>
+    <div class="container-fluid" style='margin-top:10px'>
+        <div class="row">
+
+            <!-- LEFT column -->
+            <div class="col-md-3">
+                <br/>
+                <div class="text-center">
+                    <div id="discover-button" class="btn-toolbar" role="toolbar" style="display:inline-block">
+                        <button  type="button" class='btn btn-primary btn-lg' ng-click="graph.randomize()">Generate a new design</button>
+                        <button id="" type="button" class='btn btn-default btn-lg' ng-click="graph.clear()" uib-tooltip="clear" tooltip-placement="right">
+                            <span class="glyphicon glyphicon-erase" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- <hr/> -->
+                <br/>
+                <div ng-repeat="layer in graph.layers" ng-if="$index==graph.selectedLayerIdx">
+                    <ng-include src="'partial/settings_shape.html'"></ng-include>
+                </div>
+
+                <ng-include src="'partial/settings_layers.html'"></ng-include>
+
+            </div>
+
+            <!-- CENTER column -->
+            <div id="board-div" class="col-md-5">
+                <div ng-if="graph.loading" class="center-block" style="text-align:center">
+                    <img src="img/loading.gif" style="width:64px"></img>
+                </div>
+                <div ng-hide="graph.loading">
+                    <div main-board id="main-board" layers="graph.layers" filtered="graph.style.filtered" background="graph.style.background" onclick-layer="graph.selectLayer(i)"></div>
+                    <!-- TOOLBAR -->
+                    <div class="text-center" style="padding-top:20px">
+                        <ng-include src="'partial/toolbar.html'"></ng-include>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT column -->
+            <div class="col-md-4">
+                <div ng-repeat="layer in graph.layers" ng-show="$index==graph.selectedLayerIdx" ng-cloak>
+                   <ng-include src="'partial/settings_iteration.html'"></ng-include>
+                </div>
+            </div>
+
+        </div> <!-- /ROW -->
+    </div> <!-- /CONTAINER -->
+</div>

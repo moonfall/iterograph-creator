@@ -1,0 +1,69 @@
+<form class="form-horizontal" >
+    <uib-accordion close-others="true">
+        <!-- LAYERS -->
+        <uib-accordion-group heading="Layers" is-open="false">
+            <div class="form-group form-inline">
+                <label class="col-md-3 control-label">Background</label>
+                <div class="col-md-9">
+                        <input type="color" ng-model="graph.style.background" class="form-control" style="width:50px"/>
+                </div>
+            </div>
+            <div class="form-group form-inline">
+                <label class="col-md-3 control-label">Filter</label>
+                <div class="col-md-9">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" ng-model="graph.style.filtered">
+                                Paper style
+                            </input>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group form-inline">
+                <label class="col-md-3 control-label">Layers</label>
+                <div class="col-md-9">
+                    <ul id="layer-list" class="nav nav-tabs">
+                        <li ng-repeat="layer in graph.layers" ng-class="{active:graph.selectedLayerIdx==$index}">
+                            <a ng-click="graph.selectedLayerIdx=$index">
+                                {{$index+1}}
+                            </a>
+                        </li>
+                        <li>
+                            <a ng-click="graph.addLayer()">+</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div ng-repeat="layer in graph.layers" ng-if="graph.selectedLayerIdx==$index" class="form-group form-inline" >
+                <div class="col-md-3">
+                </div>
+                <div class="col-md-9">
+                    <label>x</label>
+                    <input type="number" step="any" ng-model="layer.translate[0]" class="form-control" style="width:80px"></input>
+                    <label>y</label>
+                    <input type="number" step="any" ng-model="layer.translate[1]" class="form-control" style="width:80px"></input>
+                    <span ng-show="graph.layers.length>1" id="remove-layer-button">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"  ng-click="graph.removeCurrentLayer()"  uib-tooltip="Remove layer" tooltip-class="" ></span>
+                    </span>
+
+                    <br/>
+                    <label>scale</label> : {{layer.scale | number:2}}
+
+                </div>
+            </div>
+            <div class="form-group form-inline">
+                <label class="col-md-3 control-label">Animation</label>
+                <div class="col-md-9">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" ng-model="graph.layers[graph.selectedLayerIdx].animated">
+                                Crazy hypnotic vomitive mode
+                            </input>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </uib-accordion-group>
+    </uib-accordion>
+</form>

@@ -1,0 +1,45 @@
+ <div class="modal-header">
+    <div class="clearfix">
+        <h3 class="modal-title pull-left">Gallery</h3>
+        <a class="close pull-right" style="margin-left:20px" ng-click="ok()">&times;</a>
+        <div class="pull-right" style='text-align:center'>
+            <form role="form" class="form-inline">
+                <div class="form-group" ng-init="chronoOrder=true">
+                    <label>Order: <select class="form-control" ng-model="chronoOrder" ng-options="v as k for (k,v) in {'newest':true, 'oldest':false}"></select></label>
+                    {{order}}
+                    <label>Search: <input class="form-control" ng-model="searchText"></label>
+                </div>
+            </form>
+        </div>
+
+        <!-- <button class="btn btn-default pull-right" type="button" ng-click="ok()">&times;</button -->
+    </div>
+</div>
+<div class="modal-body clearfix">
+    <div ng-if="loading" class="center-block" style="text-align:center">
+        <img src="img/loading.gif" style="width:64px">
+    </div>
+    <div ng-hide="loading">
+        <span ng-if="error">{{message}}. Please try later.</span>
+
+        
+        <ul class="clearfix">
+            <li 
+                ng-repeat="image in images | orderBy:'':chronoOrder | filter:compare | offset:(currentPage-1)*itemPerPage | limitTo:itemPerPage"
+                class="pull-left"
+                style="list-style:none">
+                <a href="#graph/{{image.id}}" ng-click="ok()">
+                    <img ng-src="{{image.link}}" class="shadowed" width="150" style="margin:5px">
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</div>
+<div class="modal-footer">
+    <div style="text-align:center">
+            <uib-pagination total-items="totalImages" ng-model="currentPage" max-size="maxPage" items-per-page="itemPerPage" class="pagination-sm" boundary-link-numbers="true" rotate="false" previous-text="&lsaquo;" next-text="&rsaquo;"></uib-pagination>
+    </div>
+    <!-- <button class="btn btn-primary" type="button" ng-click="ok()">OK</button> -->
+<!--     <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button> -->
+</div>

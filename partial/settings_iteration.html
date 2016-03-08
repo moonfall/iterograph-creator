@@ -1,0 +1,71 @@
+ <form class="form-horizontal" >
+    <uib-accordion close-others="true">
+        <uib-accordion-group heading="Iteration" is-open="true">
+            <div class="form-group form-inline">
+                <label class="col-md-3 control-label">
+                    <locker target="graph.lock.iteration"></locker>
+                    Iterations</label>
+                <div class="col-sm-9">
+                    <input type="number" style="width:80px" ng-model="layer.iteration" class="form-control" min="1"></input>
+                    <input type="range" min="1" max="500" ng-model="layer.iteration" class="form-control"></input>
+                </div>
+            </div>
+
+            <div class="form-group form-inline">
+                <label class="col-md-3 control-label">
+                    <locker target="graph.lock.angle"></locker>
+                    Angle step
+                </label>
+                <div class="col-sm-9">
+                    <input type="number" style="width:80px" step="0.5" ng-model="layer.angle" class="form-control"></input>
+                    <input type="range" min="0" max="360" step="0.5" ng-model="layer.angle" class="form-control"></input>
+                    <button class="btn btn-default" ng-click="layer.angle=137.5">golden</button>
+                </div>
+            </div>
+
+            <div class="form-group form-inline">
+                <label class="col-md-3 control-label">Display</label>
+                <div class="col-sm-9">
+                    <select ng-model="layer.order" class="form-control" ng-options="v as t for (t,v) in {'descending' : true, 'ascending' : false}">
+                    </select>
+                </div>
+            </div>
+            <div class="form-group form-inline">
+                <label class="col-md-3 control-label">
+                    <locker target="graph.lock.distanceScale"></locker>
+                    Distance
+                </label>
+                <div class="col-sm-9">
+                    <div scale-input data="layer.distanceScale" type="distance" max="graph.propertyDef.max.distance"></div>
+                </div>
+            </div>
+            <div class="form-group form-inline">
+                <label class="col-md-3 control-label">
+                    <locker target="graph.lock.sizeScale"></locker>
+                    Size
+                </label>
+                <div class="col-sm-9">
+                    <div scale-input data="layer.sizeScale" type="size" max="graph.propertyDef.max.size"></div>
+                </div>
+            </div>
+            <div class="form-group form-inline">
+                <label class="col-md-3 control-label">
+                    <locker target="graph.lock.rotationScale"></locker>
+                    Rotation
+                </label>
+                <div class="col-sm-9">
+                    <div scale-input data="layer.rotationScale" type="angle" max="graph.propertyDef.max.rotation"></div>
+                </div>
+            </div>
+            <div class="form-group form-inline">
+                <label class="col-md-3 control-label">
+                    <locker target="graph.lock.strokeScale"></locker>
+                    Stroke
+                </label>
+                <div class="col-sm-9">
+                    <div scale-input data="layer.strokeScale" type="stroke" max="graph.propertyDef.max.stroke"></div>
+                </div>
+            </div>
+        </uib-accordion-group>
+    </uib-accordion>
+</form>
